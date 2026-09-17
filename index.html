@@ -27,6 +27,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 100px; /* Verhindert, dass der fixe Header Überschriften verdeckt */
         }
 
         body {
@@ -74,6 +75,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            cursor: pointer;
         }
 
         .logo-img {
@@ -735,7 +737,7 @@
 
     <header>
     <div class="nav-container">
-        <a href="#" class="logo">
+        <a href="#" class="logo" id="logoLink">
             <img src="logo.png" alt="Praxis GlückSeelig Logo" class="logo-img">
             <div class="logo-texts">
                 <span class="logo-main-text">GlückSeelig</span>
@@ -744,11 +746,11 @@
         </a>
         <button class="menu-toggle" aria-label="Menü öffnen" onclick="toggleMenu()">☰</button>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#Über" onclick="closeMenu()">Über mich</a></li>
-            <li><a href="#Team" onclick="closeMenu()">Praxis & Netzwerk</a></li>
-            <li><a href="#Leistungen" onclick="closeMenu()">Leistungen</a></li>
-            <li><a href="#Ablauf" onclick="closeMenu()">Ablauf</a></li>
-            <li><a href="#Kontakt" class="nav-btn" onclick="closeMenu()">Termin anfragen</a></li>
+            <li><a href="#about">Über mich</a></li>
+            <li><a href="#team">Praxis & Netzwerk</a></li>
+            <li><a href="#services">Leistungen</a></li>
+            <li><a href="#approach">Ablauf</a></li>
+            <li><a href="#contact" class="nav-btn">Termin anfragen</a></li>
         </ul>
     </div>
 </header>
@@ -973,6 +975,32 @@
             navLinks.classList.remove('active');
         }
 
+        // Automatisches sanftes Scrollen für alle internen Links ohne URL-Veränderung (#)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeMenu();
+
+                const targetId = this.getAttribute('href');
+                
+                if (targetId === '#') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    return;
+                }
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Kontaktformular Handling via Formspree
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const form = e.target;
