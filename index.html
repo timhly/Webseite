@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Praxis GlückSeelig | Tanja Mielke - Heilpraktikerin für Psychotherapie</title>
+    <title>Praxis GlückSeelig | Tanja Mielke - Heilpraktikerin für Psychotherapie & Ganzheitliches Zentrum</title>
     <!-- Google Fonts: Plus Jakarta Sans, Cormorant Garamond & Alex Brush -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Alex+Brush&display=swap" rel="stylesheet">
     <style>
@@ -331,6 +331,50 @@
             text-align: left;
         }
 
+        /* Team / Netzwerk / Partner */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .team-card {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-top: 3px solid var(--secondary);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .team-card.highlight-card {
+            border-top-color: var(--accent);
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--card-bg-light) 100%);
+        }
+
+        .team-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+        }
+
+        .team-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            margin-bottom: 1.5rem;
+        }
+
         /* Leistungen */
         .services-grid {
             display: grid;
@@ -630,7 +674,7 @@
                 width: 100%;
             }
 
-            .services-grid {
+            .services-grid, .team-grid {
                 grid-template-columns: 1fr;
                 gap: 1.8rem;
             }
@@ -700,12 +744,13 @@
                 <div class="logo-icon">♡</div>
                 <div class="logo-texts">
                     <span class="logo-main-text">GlückSeelig</span>
-                    <span>Psychotherapie</span>
+                    <span>Psychotherapie & Netzwerk</span>
                 </div>
             </a>
             <button class="menu-toggle" aria-label="Menü öffnen" onclick="toggleMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about" onclick="closeMenu()">Über mich</a></li>
+                <li><a href="#team" onclick="closeMenu()">Praxis & Netzwerk</a></li>
                 <li><a href="#services" onclick="closeMenu()">Leistungen</a></li>
                 <li><a href="#approach" onclick="closeMenu()">Ablauf</a></li>
                 <li><a href="#contact" class="nav-btn" onclick="closeMenu()">Termin anfragen</a></li>
@@ -717,7 +762,7 @@
     <section class="hero">
         <div class="hero-grid">
             <div class="hero-text">
-                <span class="hero-badge">Heilpraktikerin für Psychotherapie</span>
+                <span class="hero-badge">Heilpraktikerin für Psychotherapie & Ganzheitlichkeit</span>
                 <h1>Begleitung auf Ihrem Weg zu innerer Balance</h1>
                 <p>Willkommen in der Praxis GlückSeelig. Mit viel Einfühlungsvermögen und langjähriger Erfahrung in der Psychotherapie biete ich Ihnen einen geschützten, wertschätzenden Raum für Ihre persönliche Entwicklung, Bewältigung von Lebenskrisen und seelische Heilung.</p>
                 <div class="hero-buttons">
@@ -744,6 +789,36 @@
                 <div class="experience-box-centered">
                     <div class="experience-number">15+</div>
                     <div class="experience-text">Jahre professionelle Praxiserfahrung<br>& fundierte psychotherapeutische Begleitung</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team & Kooperation / Raum für Partner Sektion -->
+    <section id="team">
+        <div class="container">
+            <div class="section-header">
+                <span class="hero-badge">Gemeinschaft & Zukunft</span>
+                <h2>Das Praxis-Netzwerk</h2>
+                <p>Die Praxis GlückSeelig wächst: Neben der Psychotherapie entsteht hier ein harmonischer Ort für ganzheitliche Gesundheit, Körperarbeit und Begleitung.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card highlight-card">
+                    <div>
+                        <span class="team-role">Inhaberin & Leitung</span>
+                        <h3>Tanja Mielke</h3>
+                        <p>Heilpraktikerin für Psychotherapie. Kernfokus auf psychologische Beratung, Krisenbewältigung und emotionale Stabilität im Rahmen der Einzeltherapie.</p>
+                    </div>
+                    <a href="#contact" class="btn-secondary" style="font-size: 0.9rem; padding: 0.6rem 1rem; text-align: center;">Kontakt aufnehmen</a>
+                </div>
+                
+                <div class="team-card">
+                    <div>
+                        <span class="team-role">Zukunft & Vermietung</span>
+                        <h3>Partner & Angebote (Demnächst)</h3>
+                        <p>Die Praxisräume bieten künftig Platz für weitere ergänzende Disziplinen wie z. B. **Yoga-Lehrerinnen, Musiktherapie, Körperarbeit oder systemische Beratung**, die perfekt zum ganzheitlichen Konzept passen.</p>
+                    </div>
+                    <a href="#contact" class="btn-secondary" style="font-size: 0.9rem; padding: 0.6rem 1rem; text-align: center;">Raum-Anfrage / Interesse?</a>
                 </div>
             </div>
         </div>
@@ -817,7 +892,7 @@
             <div class="section-header">
                 <span class="hero-badge">Kontakt & Termin</span>
                 <h2>Nehmen Sie Kontakt auf</h2>
-                <p>Schreiben Sie mir gerne eine Nachricht oder rufen Sie an für ein unverbindliches Kennenlernen.</p>
+                <p>Schreiben Sie mir gerne eine Nachricht, rufen Sie an oder fragen Sie als Therapeutin / Yoga-Lehrerin nach Praxisräumen.</p>
             </div>
             
             <div class="contact-box">
@@ -836,8 +911,8 @@
                     </div>
 
                     <div class="contact-detail" style="margin-top: 1rem;">
-                        <strong>Hinweis</strong>
-                        <span>Als Praxis für Psychotherapie nach Heilpraktikergesetz wendet sich das Angebot an Selbstzahler sowie ggf. Privatversicherte/Zusatzversicherte.</span>
+                        <strong>Kooperation & Räume</strong>
+                        <span>Interesse an Untervermietung (Yoga, Musiktherapie etc.)? Sprechen Sie mich gerne an!</span>
                     </div>
                 </div>
 
@@ -852,8 +927,8 @@
                         <input type="email" id="email" required placeholder="beispiel@domain.de">
                     </div>
                     <div class="form-group">
-                        <label for="message">Ihre Nachricht</label>
-                        <textarea id="message" required placeholder="Beschreiben Sie kurz Ihr Anliegen..."></textarea>
+                        <label for="message">Ihre Nachricht / Anliegen</label>
+                        <textarea id="message" required placeholder="Therapieanfrage oder Interesse an Praxisräumen (Yoga/Therapie)..."></textarea>
                     </div>
                     <button type="submit" class="btn-submit">Nachricht absenden</button>
                 </form>
@@ -876,6 +951,7 @@
             </div>
             <ul class="footer-links">
                 <li><a href="#about">Über mich</a></li>
+                <li><a href="#team">Praxis & Netzwerk</a></li>
                 <li><a href="#services">Leistungen</a></li>
                 <li><a href="#contact">Kontakt</a></li>
                 <li><a href="#">Impressum</a></li>
