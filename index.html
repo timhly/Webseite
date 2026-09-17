@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Praxis GlückSelig | Heilpraktiker für Psychotherapie & Ganzheitliches Zentrum</title>
+    <title>Praxis GlückSeelig | Tanja Mielke - Heilpraktikerin für Psychotherapie & Ganzheitliches Zentrum</title>
     <!-- Google Fonts: Plus Jakarta Sans, Cormorant Garamond & Alex Brush -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Alex+Brush&display=swap" rel="stylesheet">
     <style>
@@ -66,27 +66,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.8rem 1.5rem;
+            padding: 0.6rem 1.5rem;
         }
 
         .logo {
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 1rem;
         }
 
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-            background: rgba(163, 107, 75, 0.15);
-            border: 1px solid rgba(163, 107, 75, 0.3);
+        .logo-img {
+            height: 45px;
+            width: 45px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 1.1rem;
+            object-fit: cover;
+            border: 1px solid rgba(163, 107, 75, 0.4);
+            background-color: #f3efe9; /* Falls das PNG Transparenzen hat */
         }
 
         .logo-texts {
@@ -97,7 +93,7 @@
 
         .logo-main-text {
             font-family: 'Alex Brush', cursive;
-            font-size: 2.1rem;
+            font-size: 2rem;
             color: var(--text-main);
             font-weight: 400;
             letter-spacing: 0.05em;
@@ -109,7 +105,7 @@
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--accent);
-            margin-top: -3px;
+            margin-top: -2px;
         }
 
         .nav-links {
@@ -741,10 +737,10 @@
     <header>
         <div class="nav-container">
             <a href="#" class="logo">
-                <div class="logo-icon">♡</div>
+                <img src="logo.png" alt="Praxis GlückSeelig Logo" class="logo-img">
                 <div class="logo-texts">
-                    <span class="logo-main-text">GlückSelig</span>
-                    <span>Psychotherapie & Netzwerk</span>
+                    <span class="logo-main-text">GlückSeelig</span>
+                    <span>Praxis für Psychotherapie</span>
                 </div>
             </a>
             <button class="menu-toggle" aria-label="Menü öffnen" onclick="toggleMenu()">☰</button>
@@ -764,7 +760,7 @@
             <div class="hero-text">
                 <span class="hero-badge">Heilpraktikerin für Psychotherapie & Ganzheitlichkeit</span>
                 <h1>Begleitung auf Ihrem Weg zu innerer Balance</h1>
-                <p>Willkommen in der Praxis GlückSelig. Mit viel Einfühlungsvermögen und langjähriger Erfahrung in der Psychotherapie biete ich Ihnen einen geschützten, wertschätzenden Raum für Ihre persönliche Entwicklung, Bewältigung von Lebenskrisen und seelische Heilung.</p>
+                <p>Willkommen in der Praxis GlückSeelig. Mit viel Einfühlungsvermögen und langjähriger Erfahrung in der Psychotherapie biete ich Ihnen einen geschützten, wertschätzenden Raum für Ihre persönliche Entwicklung, Bewältigung von Lebenskrisen und seelische Heilung.</p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn-primary">Erstgespräch vereinbaren</a>
                     <a href="#about" class="btn-secondary">Mehr erfahren</a>
@@ -800,7 +796,7 @@
             <div class="section-header">
                 <span class="hero-badge">Gemeinschaft & Zukunft</span>
                 <h2>Das Praxis-Netzwerk</h2>
-                <p>Die Praxis GlückSelig wächst: Neben der Psychotherapie entsteht hier ein harmonischer Ort für ganzheitliche Gesundheit, Körperarbeit und Begleitung.</p>
+                <p>Die Praxis GlückSeelig wächst: Neben der Psychotherapie entsteht hier ein harmonischer Ort für ganzheitliche Gesundheit, Körperarbeit und Begleitung.</p>
             </div>
             <div class="team-grid">
                 <div class="team-card highlight-card">
@@ -901,7 +897,7 @@
                     <p>Um eine ruhige und ungestörte Atmosphäre zu gewährleisten, arbeite ich ausschließlich nach vorheriger Terminvereinbarung.</p>
                     
                     <div class="contact-detail">
-                        <strong>Praxis GlückSelig</strong>
+                        <strong>Praxis GlückSeelig</strong>
                         <span>Tanja Mielke (Heilpraktikerin für Psychotherapie)</span>
                     </div>
                     
@@ -928,7 +924,7 @@
                     </div>
                     <div class="form-group">
                         <label for="message">Ihre Nachricht / Anliegen</label>
-                        <textarea id="message" required placeholder="Terminanfrage oder Interesse an Praxisräumen (Yoga/Therapie)..."></textarea>
+                        <textarea id="message" required placeholder="Therapieanfrage oder Interesse an Praxisräumen (Yoga/Therapie)..."></textarea>
                     </div>
                     <button type="submit" class="btn-submit">Nachricht absenden</button>
                 </form>
@@ -957,7 +953,7 @@
                 <li><a href="#">Impressum</a></li>
                 <li><a href="#">Datenschutz</a></li>
             </ul>
-            <p class="copyright">&copy; 2026 Praxis GlückSelig • Tanja Mielke. Alle Rechte vorbehalten.</p>
+            <p class="copyright">&copy; 2026 Praxis GlückSeelig • Tanja Mielke. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 
