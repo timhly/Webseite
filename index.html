@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Praxis GlückSeelig | Heilpraktik für Psychotherapie & Ganzheitliches Zentrum</title>
-    <!-- Google Fonts: Plus Jakarta Sans, Cormorant Garamond & Alex Brush -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Alex+Brush&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -27,7 +27,6 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 100px; /* Verhindert, dass der fixe Header Überschriften verdeckt */
         }
 
         body {
@@ -123,6 +122,7 @@
             font-weight: 500;
             font-size: 0.95rem;
             transition: color 0.3s ease;
+            cursor: pointer;
         }
 
         .nav-links a:hover {
@@ -149,6 +149,74 @@
             font-size: 1.8rem;
             color: var(--text-main);
             padding: 0.2rem;
+        }
+
+        /* View Manager (Umschaltung Startseite <-> Impressum / Datenschutz) */
+        .page-view {
+            display: none;
+        }
+        .page-view.active {
+            display: block;
+        }
+
+        /* Legal Container für Impressum & Datenschutz */
+        .legal-container {
+            max-width: 800px;
+            margin: 11rem auto 4rem auto;
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(107, 88, 76, 0.2);
+        }
+
+        .legal-container h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .legal-container h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .legal-container p, .legal-container li {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .legal-container a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .legal-container a:hover {
+            text-decoration: underline;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.7rem 1.5rem;
+            background-color: var(--accent);
+            color: #ffffff;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .back-btn:hover {
+            background-color: #b87b57;
         }
 
         /* Hero Sektion */
@@ -215,6 +283,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             text-align: center;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
@@ -232,6 +301,7 @@
             border: 1px solid var(--secondary);
             transition: all 0.3s ease;
             text-align: center;
+            cursor: pointer;
         }
 
         .btn-secondary:hover {
@@ -631,6 +701,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.3s ease;
+            cursor: pointer;
         }
 
         .footer-links a:hover {
@@ -736,209 +807,280 @@
 <body>
 
     <header>
-    <div class="nav-container">
-        <a href="#" class="logo" id="logoLink">
-            <img src="logo.png" alt="Praxis GlückSeelig Logo" class="logo-img">
-            <div class="logo-texts">
-                <span class="logo-main-text">GlückSeelig</span>
-                <span>Psychotherapeutische Beratung</span>
+        <div class="nav-container">
+            <a onclick="showView('home')" class="logo">
+                <img src="logo.png" alt="Praxis GlückSeelig Logo" class="logo-img">
+                <div class="logo-texts">
+                    <span class="logo-main-text">GlückSeelig</span>
+                    <span>Psychotherapeutische Beratung</span>
+                </div>
+            </a>
+            <button class="menu-toggle" aria-label="Menü öffnen" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a onclick="showView('home', 'about')">Über mich</a></li>
+                <li><a onclick="showView('home', 'team')">Praxis & Netzwerk</a></li>
+                <li><a onclick="showView('home', 'services')">Leistungen</a></li>
+                <li><a onclick="showView('home', 'approach')">Ablauf</a></li>
+                <li><a onclick="showView('home', 'contact')" class="nav-btn">Termin anfragen</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ================= VIEW 1: STARTSEITE ================= -->
+    <div id="view-home" class="page-view active">
+        <!-- Hero Sektion -->
+        <section class="hero">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <span class="hero-badge">Heilpraktikerin für Psychotherapie & Ganzheitlichkeit</span>
+                    <h1>Begleitung auf Ihrem Weg zu innerer Balance</h1>
+                    <p>Willkommen in der Praxis GlückSeelig. Mit viel Einfühlungsvermögen und langjähriger Erfahrung in der Psychotherapie biete ich Ihnen einen geschützten, wertschätzenden Raum für Ihre persönliche Entwicklung, Bewältigung von Lebenskrisen und seelische Heilung.</p>
+                    <div class="hero-buttons">
+                        <a onclick="showView('home', 'contact')" class="btn-primary">Erstgespräch vereinbaren</a>
+                        <a onclick="showView('home', 'about')" class="btn-secondary">Mehr erfahren</a>
+                    </div>
+                </div>
+                <div class="hero-card">
+                    <h3>Sicherer Raum für Ihre Psyche</h3>
+                    <p>Individuelle Therapieverfahren, fundierte psychotherapeutische Begleitung und empathische Unterstützung – ganz auf Ihre persönlichen Bedürfnisse abgestimmt.</p>
+                </div>
             </div>
-        </a>
-        <button class="menu-toggle" aria-label="Menü öffnen" onclick="toggleMenu()">☰</button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#about">Über mich</a></li>
-            <li><a href="#team">Praxis & Netzwerk</a></li>
-            <li><a href="#services">Leistungen</a></li>
-            <li><a href="#approach">Ablauf</a></li>
-            <li><a href="#contact" class="nav-btn">Termin anfragen</a></li>
-        </ul>
+        </section>
+
+        <!-- Über mich Sektion -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content-full">
+                    <span class="hero-badge">Über mich</span>
+                    <h3>Tanja Mielke</h3>
+                    <p>Als erfahrene Heilpraktikerin für Psychotherapie begleite ich Menschen in schwierigen Lebensphasen, bei Ängsten, Burnout, depressiven Verstimmungen und persönlichen Umbruchsituationen.</p>
+                    <p>Mir ist es ein Anliegen, Ihnen zuzuhören, ohne zu werten. Gemeinsam erarbeiten wir neue Perspektiven, stärken Ihre inneren Ressourcen und finden individuelle Wege zu mehr Lebensfreude und emotionaler Stabilität.</p>
+                    
+                    <div class="experience-box-centered">
+                        <div class="experience-number">15+</div>
+                        <div class="experience-text">Jahre professionelle Praxiserfahrung<br>& fundierte psychotherapeutische Begleitung</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team & Kooperation Sektion -->
+        <section id="team">
+            <div class="container">
+                <div class="section-header">
+                    <span class="hero-badge">Gemeinschaft & Zukunft</span>
+                    <h2>Das Praxis-Netzwerk</h2>
+                    <p>Die Praxis GlückSeelig wächst: Neben der Psychotherapie entsteht hier ein harmonischer Ort für ganzheitliche Gesundheit, Körperarbeit und Begleitung.</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card highlight-card">
+                        <div>
+                            <span class="team-role">Inhaberin & Leitung</span>
+                            <h3>Tanja Mielke</h3>
+                            <p>Heilpraktikerin für Psychotherapie. Kernfokus auf psychologische Beratung, Krisenbewältigung und emotionale Stabilität im Rahmen der Einzeltherapie.</p>
+                        </div>
+                        <a onclick="showView('home', 'contact')" class="btn-secondary" style="font-size: 0.9rem; padding: 0.6rem 1rem; text-align: center;">Kontakt aufnehmen</a>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div>
+                            <span class="team-role">Zukunft & Vermietung</span>
+                            <h3>Partner & Angebote (Demnächst)</h3>
+                            <p>Die Praxisräume bieten künftig Platz für weitere ergänzende Disziplinen wie z. B. <strong>Yoga-Lehrer/innen, Musiktherapie, Körperarbeit oder systemische Beratung</strong>, die das ganzheitliche Angebot harmonisch ergänzen.</p>
+                        </div>
+                        <a onclick="showView('home', 'contact')" class="btn-secondary" style="font-size: 0.9rem; padding: 0.6rem 1rem; text-align: center;">Raum-Anfrage / Interesse?</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leistungen Sektion -->
+        <section id="services">
+            <div class="container">
+                <div class="section-header">
+                    <span class="hero-badge">Behandlungsschwerpunkte</span>
+                    <h2>Psychotherapeutische Begleitung</h2>
+                    <p>Jeder Mensch bringt seine eigene Geschichte mit. Mein Angebot richtet sich individuell nach Ihren aktuellen Lebensthemen.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Einzeltherapie</h3>
+                        <p>Ein geschützter Raum für die Bearbeitung persönlicher Krisen, Ängste, Lebensfragen und individueller psychischer Belastungen.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Bewältigung von Lebenskrisen</h3>
+                        <p>Unterstützung bei tiefgreifenden Veränderungen, Verlusten, beruflichem oder privatem Stress sowie emotionalen Erschöpfungszuständen.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Persönlichkeitsentwicklung</h3>
+                        <p>Stärkung von Selbstwertgefühl, Resilienz und emotionaler Klarheit, um innere Blockaden langfristig zu lösen.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ansatz / Ablauf -->
+        <section id="approach" class="approach">
+            <div class="container">
+                <div class="section-header">
+                    <span class="hero-badge">Gemeinsamer Weg</span>
+                    <h2>Wie wir zusammenarbeiten</h2>
+                    <p>Transparenz, Vertrauen und Augenhöhe bilden das Fundament unserer Zusammenarbeit.</p>
+                </div>
+                
+                <div class="approach-steps-container">
+                    <div class="approach-step-item">
+                        <div class="step-number-box">01</div>
+                        <div class="step-content">
+                            <h3>Erstgespräch</h3>
+                            <p>Wir lernen uns kennen, besprechen Ihr Anliegen und klären gemeinsam, ob die Chemie stimmt und wie ich Sie am besten unterstützen kann.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="approach-step-item">
+                        <div class="step-number-box">02</div>
+                        <div class="step-content">
+                            <h3>Individueller Plan</h3>
+                            <p>Wir definieren Ihre Ziele und wählen die passenden therapeutischen Ansätze aus, die exakt zu Ihrer persönlichen Situation passen.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="approach-step-item">
+                        <div class="step-number-box">03</div>
+                        <div class="step-content">
+                            <h3>Begleitung & Stärkung</h3>
+                            <p>Schritt für Schritt arbeiten wir an Ihren Themen, lösen Blockaden auf und entwickeln neue Bewältigungsstrategien für Ihren Alltag.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kontakt Sektion -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <span class="hero-badge">Kontakt & Termin</span>
+                    <h2>Nehmen Sie Kontakt auf</h2>
+                    <p>Schreiben Sie mir gerne eine Nachricht, rufen Sie an oder kommen Sie bei Interesse an unseren Praxisräumen auf uns zu.</p>
+                </div>
+                
+                <div class="contact-box">
+                    <div class="contact-info">
+                        <h3>Praxisinformationen</h3>
+                        <p>Um eine ruhige und ungestörte Atmosphäre zu gewährleisten, arbeite ich ausschließlich nach vorheriger Terminvereinbarung.</p>
+                        
+                        <div class="contact-detail">
+                            <strong>Praxis GlückSeelig</strong>
+                            <span>Tanja Mielke - Heilpraktikerin für Psychotherapie</span>
+                        </div>
+                        
+                        <div class="contact-detail" style="margin-top: 1rem;">
+                            <strong>Telefon</strong>
+                            <a href="tel:+492051928470">+49 (0) 2051 92847-0</a>
+                        </div>
+
+                        <div class="contact-detail" style="margin-top: 1rem;">
+                            <strong>Kooperation & Räume</strong>
+                            <span>Sie sind Yoga-Lehrer/in oder Ähnliches und suchen passende Räumlichkeiten? Für Fragen zur Untervermietung stehen wir Ihnen jederzeit offen gegenüber.</span>
+                        </div>
+                    </div>
+
+                    <!-- Kontaktformular -->
+                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/mgaveygp" method="POST">
+                        <h3>Nachricht senden</h3>
+                        <div class="form-group">
+                            <label for="name">Ihr Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Vor- und Nachname">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-Mail-Adresse</label>
+                            <input type="email" id="email" name="email" required placeholder="beispiel@domain.de">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Ihre Nachricht / Anliegen</label>
+                            <textarea id="message" name="message" required placeholder="Therapieanfrage oder Interesse an Praxisräumen (Yoga o.ä)..."></textarea>
+                        </div>
+                        
+                        <button type="submit" id="submitBtn" class="btn-submit">Nachricht absenden</button>
+                        
+                        <div id="formSuccessMessage" style="display: none; margin-top: 1rem; padding: 1rem; background-color: rgba(46, 204, 113, 0.2); border: 1px solid #2ecc71; border-radius: 8px; color: #2ecc71; text-align: center; font-weight: 500;">
+                            Vielen Dank! Ihre Nachricht wurde erfolgreich versendet. Wir melden uns zeitnah bei Ihnen.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
     </div>
-</header>
 
-    <!-- Hero Sektion -->
-    <section class="hero">
-        <div class="hero-grid">
-            <div class="hero-text">
-                <span class="hero-badge">Heilpraktikerin für Psychotherapie & Ganzheitlichkeit</span>
-                <h1>Begleitung auf Ihrem Weg zu innerer Balance</h1>
-                <p>Willkommen in der Praxis GlückSeelig. Mit viel Einfühlungsvermögen und langjähriger Erfahrung in der Psychotherapie biete ich Ihnen einen geschützten, wertschätzenden Raum für Ihre persönliche Entwicklung, Bewältigung von Lebenskrisen und seelische Heilung.</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn-primary">Erstgespräch vereinbaren</a>
-                    <a href="#about" class="btn-secondary">Mehr erfahren</a>
-                </div>
-            </div>
-            <div class="hero-card">
-                <h3>Sicherer Raum für Ihre Psyche</h3>
-                <p>Individuelle Therapieverfahren, fundierte psychotherapeutische Begleitung und empathische Unterstützung – ganz auf Ihre persönlichen Bedürfnisse abgestimmt.</p>
-            </div>
+
+    <!-- ================= VIEW 2: IMPRESSUM ================= -->
+    <div id="view-impressum" class="page-view">
+        <div class="legal-container">
+            <h1>Impressum</h1>
+
+            <h2>Angaben gemäß § 5 TMG</h2>
+            <p>
+                Praxis GlückSeelig<br>
+                Tanja Mielke<br>
+                Laakmannsbusch 27<br>
+                42555 Velbert
+            </p>
+
+            <h2>Kontakt</h2>
+            <p>
+                Telefon: +49 (0) 2051 92847-0<br>
+                E-Mail: <a href="mailto:mielke.tim2308@gmail.com">mielke.tim2308@gmail.com</a>
+            </p>
+
+            <h2>Berufsbezeichnung und berufsrechtliche Regelungen</h2>
+            <p>
+                <strong>Berufsbezeichnung:</strong> Heilpraktikerin für Psychotherapie<br>
+                Verliehen in der Bundesrepublik Deutschland.<br>
+                Die Erlaubnis zur Ausübung der Heilkunde ohne Bestallung beschränkt auf das Gebiet der Psychotherapie wurde in Deutschland erteilt durch das zuständige Gesundheitsamt.
+            </p>
+            <p>
+                <strong>Berufsrechtliche Regelungen:</strong> Gesetz über die berufsmäßige Ausübung der Heilkunde ohne Bestallung (Heilpraktikergesetz) und Erste Durchführungsverordnung zum Heilpraktikergesetz. Einsehbar unter: <a href="https://www.gesetze-im-internet.de/heilprg/" target="_blank" rel="noopener">gesetze-im-internet.de</a>
+            </p>
+
+            <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+            <p>
+                Tanja Mielke<br>
+                Laakmannsbusch 27<br>
+                42555 Velbert
+            </p>
+
+            <button onclick="showView('home')" class="back-btn">&larr; Zurück zur Startseite</button>
         </div>
-    </section>
+    </div>
 
-    <!-- Über mich Sektion -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content-full">
-                <span class="hero-badge">Über mich</span>
-                <h3>Tanja Mielke</h3>
-                <p>Als erfahrene Heilpraktikerin für Psychotherapie begleite ich Menschen in schwierigen Lebensphasen, bei Ängsten, Burnout, depressiven Verstimmungen und persönlichen Umbruchsituationen.</p>
-                <p>Mir ist es ein Anliegen, Ihnen zuzuhören, ohne zu werten. Gemeinsam erarbeiten wir neue Perspektiven, stärken Ihre inneren Ressourcen und finden individuelle Wege zu mehr Lebensfreude und emotionaler Stabilität.</p>
-                
-                <div class="experience-box-centered">
-                    <div class="experience-number">15+</div>
-                    <div class="experience-text">Jahre professionelle Praxiserfahrung<br>& fundierte psychotherapeutische Begleitung</div>
-                </div>
-            </div>
+
+    <!-- ================= VIEW 3: DATENSCHUTZ ================= -->
+    <div id="view-datenschutz" class="page-view">
+        <div class="legal-container">
+            <h1>Datenschutzerklärung</h1>
+
+            <h2>1. Datenschutz auf einen Blick</h2>
+            <h3>Allgemeine Hinweise</h3>
+            <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.</p>
+
+            <h3>Datenerfassung auf dieser Website</h3>
+            <p><strong>Wer ist verantwortlich für die Datenerfassung?</strong><br>
+            Die Datenverarbeitung erfolgt durch den Websitebetreiber (siehe Impressum).</p>
+
+            <h2>2. Hosting</h2>
+            <p>Wir hosten unsere Website bei externen Anbietern (z. B. Render).</p>
+
+            <h2>3. Allgemeine Hinweise</h2>
+            <p>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst.</p>
+
+            <h2>4. Kontaktformular</h2>
+            <p>Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben zwecks Bearbeitung bei uns gespeichert.</p>
+
+            <button onclick="showView('home')" class="back-btn">&larr; Zurück zur Startseite</button>
         </div>
-    </section>
+    </div>
 
-    <!-- Team & Kooperation / Raum für Partner Sektion -->
-    <section id="team">
-        <div class="container">
-            <div class="section-header">
-                <span class="hero-badge">Gemeinschaft & Zukunft</span>
-                <h2>Das Praxis-Netzwerk</h2>
-                <p>Die Praxis GlückSeelig wächst: Neben der Psychotherapie entsteht hier ein harmonischer Ort für ganzheitliche Gesundheit, Körperarbeit und Begleitung.</p>
-            </div>
-            <div class="team-grid">
-                <div class="team-card highlight-card">
-                    <div>
-                        <span class="team-role">Inhaberin & Leitung</span>
-                        <h3>Tanja Mielke</h3>
-                        <p>Heilpraktikerin für Psychotherapie. Kernfokus auf psychologische Beratung, Krisenbewältigung und emotionale Stabilität im Rahmen der Einzeltherapie.</p>
-                    </div>
-                    <a href="#contact" class="btn-secondary" style="font-size: 0.9rem; padding: 0.6rem 1rem; text-align: center;">Kontakt aufnehmen</a>
-                </div>
-                
-                <div class="team-card">
-                    <div>
-                        <span class="team-role">Zukunft & Vermietung</span>
-                        <h3>Partner & Angebote (Demnächst)</h3>
-                        <p>Die Praxisräume bieten künftig Platz für weitere ergänzende Disziplinen wie z. B. <strong>Yoga-Lehrer/innen, Musiktherapie, Körperarbeit oder systemische Beratung</strong>, die das ganzheitliche Angebot harmonisch ergänzen.</p>
-                    </div>
-                    <a href="#contact" class="btn-secondary" style="font-size: 0.9rem; padding: 0.6rem 1rem; text-align: center;">Raum-Anfrage / Interesse?</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Leistungen Sektion -->
-    <section id="services">
-        <div class="container">
-            <div class="section-header">
-                <span class="hero-badge">Behandlungsschwerpunkte</span>
-                <h2>Psychotherapeutische Begleitung</h2>
-                <p>Jeder Mensch bringt seine eigene Geschichte mit. Mein Angebot richtet sich individuell nach Ihren aktuellen Lebensthemen.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Einzeltherapie</h3>
-                    <p>Ein geschützter Raum für die Bearbeitung persönlicher Krisen, Ängste, Lebensfragen und individueller psychischer Belastungen.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Bewältigung von Lebenskrisen</h3>
-                    <p>Unterstützung bei tiefgreifenden Veränderungen, Verlusten, beruflichem oder privatem Stress sowie emotionalen Erschöpfungszuständen.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Persönlichkeitsentwicklung</h3>
-                    <p>Stärkung von Selbstwertgefühl, Resilienz und emotionaler Klarheit, um innere Blockaden langfristig zu lösen.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Ansatz / Ablauf -->
-    <section id="approach" class="approach">
-        <div class="container">
-            <div class="section-header">
-                <span class="hero-badge">Gemeinsamer Weg</span>
-                <h2>Wie wir zusammenarbeiten</h2>
-                <p>Transparenz, Vertrauen und Augenhöhe bilden das Fundament unserer Zusammenarbeit.</p>
-            </div>
-            
-            <div class="approach-steps-container">
-                <div class="approach-step-item">
-                    <div class="step-number-box">01</div>
-                    <div class="step-content">
-                        <h3>Erstgespräch</h3>
-                        <p>Wir lernen uns kennen, besprechen Ihr Anliegen und klären gemeinsam, ob die Chemie stimmt und wie ich Sie am besten unterstützen kann.</p>
-                    </div>
-                </div>
-                
-                <div class="approach-step-item">
-                    <div class="step-number-box">02</div>
-                    <div class="step-content">
-                        <h3>Individueller Plan</h3>
-                        <p>Wir definieren Ihre Ziele und wählen die passenden therapeutischen Ansätze aus, die exakt zu Ihrer persönlichen Situation passen.</p>
-                    </div>
-                </div>
-                
-                <div class="approach-step-item">
-                    <div class="step-number-box">03</div>
-                    <div class="step-content">
-                        <h3>Begleitung & Stärkung</h3>
-                        <p>Schritt für Schritt arbeiten wir an Ihren Themen, lösen Blockaden auf und entwickeln neue Bewältigungsstrategien für Ihren Alltag.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Kontakt Sektion -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <span class="hero-badge">Kontakt & Termin</span>
-                <h2>Nehmen Sie Kontakt auf</h2>
-                <p>Schreiben Sie mir gerne eine Nachricht, rufen Sie an oder kommen Sie bei Interesse an unseren Praxisräumen auf uns zu.</p>
-            </div>
-            
-            <div class="contact-box">
-                <div class="contact-info">
-                    <h3>Praxisinformationen</h3>
-                    <p>Um eine ruhige und ungestörte Atmosphäre zu gewährleisten, arbeite ich ausschließlich nach vorheriger Terminvereinbarung.</p>
-                    
-                    <div class="contact-detail">
-                        <strong>Praxis GlückSeelig</strong>
-                        <span>Tanja Mielke - Heilpraktikerin für Psychotherapie</span>
-                    </div>
-                    
-                    <div class="contact-detail" style="margin-top: 1rem;">
-                        <strong>Telefon</strong>
-                        <a href="tel:+492051928470">+49 (0) 2051 92847-0</a>
-                    </div>
-
-                    <div class="contact-detail" style="margin-top: 1rem;">
-                        <strong>Kooperation & Räume</strong>
-                        <span>Sie sind Yoga-Lehrer/in oder Ähnliches und suchen passende Räumlichkeiten? Für Fragen zur Untervermietung stehen wir Ihnen jederzeit offen gegenüber.</span>
-                    </div>
-                </div>
-
-                <!-- Kontaktformular -->
-                <form class="contact-form" id="contactForm" action="https://formspree.io/f/mgaveygp" method="POST">
-                    <h3>Nachricht senden</h3>
-                    <div class="form-group">
-                        <label for="name">Ihr Name</label>
-                        <input type="text" id="name" name="name" required placeholder="Vor- und Nachname">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-Mail-Adresse</label>
-                        <input type="email" id="email" name="email" required placeholder="beispiel@domain.de">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Ihre Nachricht / Anliegen</label>
-                        <textarea id="message" name="message" required placeholder="Therapieanfrage oder Interesse an Praxisräumen (Yoga o.ä)..."></textarea>
-                    </div>
-                    
-                    <button type="submit" id="submitBtn" class="btn-submit">Nachricht absenden</button>
-                    
-                    <!-- Die Erfolgsmeldung -->
-                    <div id="formSuccessMessage" style="display: none; margin-top: 1rem; padding: 1rem; background-color: rgba(46, 204, 113, 0.2); border: 1px solid #2ecc71; border-radius: 8px; color: #2ecc71; text-align: center; font-weight: 500;">
-                        Vielen Dank! Ihre Nachricht wurde erfolgreich versendet. Wir melden uns zeitnah bei Ihnen.
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer>
@@ -952,18 +1094,18 @@
                 </a>
             </div>
             <ul class="footer-links">
-                <li><a href="#about">Über mich</a></li>
-                <li><a href="#team">Praxis & Netzwerk</a></li>
-                <li><a href="#services">Leistungen</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-                <li><a href="impressum.html">Impressum</a></li>
-                <li><a href="datenschutz.html">Datenschutz</a></li>
+                <li><a onclick="showView('home', 'about')">Über mich</a></li>
+                <li><a onclick="showView('home', 'team')">Praxis & Netzwerk</a></li>
+                <li><a onclick="showView('home', 'services')">Leistungen</a></li>
+                <li><a onclick="showView('home', 'contact')">Kontakt</a></li>
+                <li><a onclick="showView('impressum')">Impressum</a></li>
+                <li><a onclick="showView('datenschutz')">Datenschutz</a></li>
             </ul>
             <p class="copyright">&copy; 2026 Praxis GlückSeelig • Tanja Mielke. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 
-    <!-- JavaScript-Block -->
+    <!-- JavaScript-Logik für nahtloses Umschalten -->
     <script>
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
@@ -975,32 +1117,36 @@
             navLinks.classList.remove('active');
         }
 
-        // Automatisches sanftes Scrollen für alle internen Links ohne URL-Veränderung (#)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                closeMenu();
+        // Steuert das Umschalten der Ansichten, ohne dass sich die URL mit Dateinamen ändert!
+        function showView(viewName, sectionId = null) {
+            closeMenu();
 
-                const targetId = this.getAttribute('href');
-                
-                if (targetId === '#') {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                    return;
-                }
-
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
+            // Alle Views ausblenden
+            document.querySelectorAll('.page-view').forEach(view => {
+                view.classList.remove('active');
             });
-        });
 
-        // Kontaktformular Handling via Formspree
+            // Gewünschte View einblenden
+            const targetView = document.getElementById('view-' + viewName);
+            if (targetView) {
+                targetView.classList.add('active');
+            }
+
+            // Nach oben scrollen
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Falls eine Sektion auf der Startseite direkt angesprungen werden soll
+            if (viewName === 'home' && sectionId) {
+                setTimeout(() => {
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 100);
+            }
+        }
+
+        // Kontaktformular-Logik
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const form = e.target;
