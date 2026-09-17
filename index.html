@@ -736,7 +736,7 @@
     <!-- Header & Navigation -->
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <img src="logo.png" alt="Praxis GlückSeelig Logo" class="logo-img">
                 <div class="logo-texts">
                     <span class="logo-main-text">GlückSeelig</span>
@@ -745,13 +745,11 @@
             </a>
             <button class="menu-toggle" aria-label="Menü öffnen" onclick="toggleMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#about" onclick="closeMenu()">Über mich</a></li>
-                <li><a href="#team" onclick="closeMenu()">Praxis & Netzwerk</a></li>
-                <li><a href="#services" onclick="closeMenu()">Leistungen</a></li>
-                <li><a href="#approach" onclick="closeMenu()">Ablauf</a></li>
-                <li><a href="#contact" class="nav-btn" onclick="closeMenu()">Termin anfragen</a></li>
-                <li><a href="impressum.html">Impressum</a></li>
-                <li><a href="datenschutz.html">Datenschutz</a></li>
+                <li><a href="index.html#about" onclick="closeMenu()">Über mich</a></li>
+                <li><a href="index.html#team" onclick="closeMenu()">Praxis & Netzwerk</a></li>
+                <li><a href="index.html#services" onclick="closeMenu()">Leistungen</a></li>
+                <li><a href="index.html#approach" onclick="closeMenu()">Ablauf</a></li>
+                <li><a href="index.html#contact" class="nav-btn" onclick="closeMenu()">Termin anfragen</a></li>
             </ul>
         </div>
     </header>
@@ -923,7 +921,7 @@
                     </div>
                 </div>
 
-                <!-- Kontaktformular (Hier action anpassen mit deiner Formspree-ID!) -->
+                <!-- Kontaktformular -->
                 <form class="contact-form" id="contactForm" action="https://formspree.io/f/mgaveygp" method="POST">
                     <h3>Nachricht senden</h3>
                     <div class="form-group">
@@ -954,11 +952,9 @@
     <footer>
         <div class="footer-content">
             <div class="social-icons">
-                <!-- Instagram Link -->
                 <a href="https://instagram.com" target="_blank" rel="noopener" class="social-icon-btn" title="Instagram">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                 </a>
-                <!-- Facebook Link -->
                 <a href="https://facebook.com" target="_blank" rel="noopener" class="social-icon-btn" title="Facebook">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                 </a>
@@ -968,14 +964,14 @@
                 <li><a href="#team">Praxis & Netzwerk</a></li>
                 <li><a href="#services">Leistungen</a></li>
                 <li><a href="#contact">Kontakt</a></li>
-                <li><a href="#">Impressum</a></li>
-                <li><a href="#">Datenschutz</a></li>
+                <li><a href="impressum.html">Impressum</a></li>
+                <li><a href="datenschutz.html">Datenschutz</a></li>
             </ul>
             <p class="copyright">&copy; 2026 Praxis GlückSeelig • Tanja Mielke. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 
-    <!-- Einheitlicher JavaScript-Block am Ende -->
+    <!-- JavaScript-Block -->
     <script>
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
@@ -987,10 +983,8 @@
             navLinks.classList.remove('active');
         }
 
-        // AJAX-Formularübermittlung für Formspree
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
             const form = e.target;
             const data = new FormData(form);
             const submitBtn = document.getElementById('submitBtn');
@@ -1003,9 +997,7 @@
                 const response = await fetch(form.action, {
                     method: form.method,
                     body: data,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                    headers: { 'Accept': 'application/json' }
                 });
 
                 if (response.ok) {
@@ -1013,7 +1005,7 @@
                     submitBtn.style.display = 'none';
                     successMsg.style.display = 'block';
                 } else {
-                    alert('Es gab ein Problem beim Senden (Prüfe die Formspree-ID im action-Attribut).');
+                    alert('Es gab ein Problem beim Senden.');
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Nachricht absenden';
                 }
