@@ -58,6 +58,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            cursor: pointer;
         }
 
         .logo-img {
@@ -105,6 +106,7 @@
             font-weight: 500;
             font-size: 0.95rem;
             transition: color 0.3s ease;
+            cursor: pointer;
         }
 
         .nav-links a:hover {
@@ -227,24 +229,24 @@
 
     <!-- Header & Navigation -->
     <header>
-    <div class="nav-container">
-        <a href="#" class="logo">
-            <img src="logo.png" alt="Praxis GlückSeelig Logo" class="logo-img">
-            <div class="logo-texts">
-                <span class="logo-main-text">GlückSeelig</span>
-                <span>Psychotherapeutische Beratung</span>
-            </div>
-        </a>
-        <button class="menu-toggle" aria-label="Menü öffnen" onclick="toggleMenu()">☰</button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#Über" onclick="closeMenu()">Über mich</a></li>
-            <li><a href="#Team" onclick="closeMenu()">Praxis & Netzwerk</a></li>
-            <li><a href="#Leistungen" onclick="closeMenu()">Leistungen</a></li>
-            <li><a href="#Ablauf" onclick="closeMenu()">Ablauf</a></li>
-            <li><a href="#Kontakt" class="nav-btn" onclick="closeMenu()">Termin anfragen</a></li>
-        </ul>
-    </div>
-</header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Praxis GlückSeelig Logo" class="logo-img">
+                <div class="logo-texts">
+                    <span class="logo-main-text">GlückSeelig</span>
+                    <span>Psychotherapeutische Beratung</span>
+                </div>
+            </a>
+            <button class="menu-toggle" aria-label="Menü öffnen" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a onclick="goToSection('about')">Über mich</a></li>
+                <li><a onclick="goToSection('team')">Praxis & Netzwerk</a></li>
+                <li><a onclick="goToSection('services')">Leistungen</a></li>
+                <li><a onclick="goToSection('approach')">Ablauf</a></li>
+                <li><a onclick="goToSection('contact')" class="nav-btn">Termin anfragen</a></li>
+            </ul>
+        </div>
+    </header>
 
     <div class="legal-container">
         <h1>Impressum</h1>
@@ -288,9 +290,16 @@
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
+
         function closeMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.remove('active');
+        }
+
+        // Leitet von Unterseiten sauber zur Startseite weiter und steuert den Anker an
+        function goToSection(sectionId) {
+            closeMenu();
+            window.location.href = 'index.html#' + sectionId;
         }
     </script>
 </body>
