@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datenschutzerklärung | Praxis GlückSelig</title>
+    <title>Datenschutzerklärung | Praxis GlückSeelig</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Alex+Brush&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -29,12 +29,113 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.7;
-            padding: 2rem 1rem;
+            padding-top: 9rem;
+        }
+
+        /* Header / Navigation */
+        header {
+            background-color: rgba(36, 30, 27, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(163, 107, 75, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 1.5rem;
+        }
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid rgba(163, 107, 75, 0.4);
+            background-color: #f3efe9;
+        }
+
+        .logo-texts {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-main-text {
+            font-family: 'Alex Brush', cursive;
+            font-size: 2rem;
+            color: var(--text-main);
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .logo-texts span:last-child {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-top: -2px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-btn {
+            background-color: var(--accent);
+            color: #ffffff !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            transition: background-color 0.3s ease !important;
+        }
+
+        .nav-btn:hover {
+            background-color: #b87b57 !important;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-main);
+            padding: 0.2rem;
         }
 
         .legal-container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 2rem auto 4rem auto;
             background-color: var(--card-bg);
             padding: 3rem;
             border-radius: var(--border-radius);
@@ -65,11 +166,6 @@
             margin-bottom: 1rem;
         }
 
-        ul {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
         a {
             color: var(--accent);
             text-decoration: none;
@@ -94,48 +190,94 @@
             background-color: #b87b57;
             text-decoration: none;
         }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--bg-color);
+                padding: 2.5rem 2rem;
+                box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+                border-top: 1px solid rgba(163, 107, 75, 0.2);
+                align-items: flex-start;
+                gap: 1.5rem;
+                z-index: 999;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                font-size: 1.2rem;
+                width: 100%;
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid rgba(163, 107, 75, 0.15);
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Praxis GlückSeelig Logo" class="logo-img">
+                <div class="logo-texts">
+                    <span class="logo-main-text">GlückSeelig</span>
+                    <span>Psychotherapeutische Beratung</span>
+                </div>
+            </a>
+            <button class="menu-toggle" aria-label="Menü öffnen" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#about" onclick="closeMenu()">Über mich</a></li>
+                <li><a href="index.html#team" onclick="closeMenu()">Praxis & Netzwerk</a></li>
+                <li><a href="index.html#services" onclick="closeMenu()">Leistungen</a></li>
+                <li><a href="index.html#approach" onclick="closeMenu()">Ablauf</a></li>
+                <li><a href="index.html#contact" class="nav-btn" onclick="closeMenu()">Termin anfragen</a></li>
+            </ul>
+        </div>
+    </header>
 
     <div class="legal-container">
         <h1>Datenschutzerklärung</h1>
 
         <h2>1. Datenschutz auf einen Blick</h2>
         <h3>Allgemeine Hinweise</h3>
-        <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+        <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.</p>
 
         <h3>Datenerfassung auf dieser Website</h3>
-        <p><strong>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong><br>
-        Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur verantwortlichen Stelle“ in dieser Datenschutzerklärung entnehmen.</p>
-        
-        <p><strong>Wie erfassen wir Ihre Daten?</strong><br>
-        Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen (z. B. durch Eingabe in das Kontaktformular). Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst (v. a. technische Daten wie Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).</p>
+        <p><strong>Wer ist verantwortlich für die Datenerfassung?</strong><br>
+        Die Datenverarbeitung erfolgt durch den Websitebetreiber (siehe Impressum).</p>
 
         <h2>2. Hosting</h2>
-        <p>Wir hosten die Inhalte unserer Website bei externen Anbietern (z. B. Render). Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann es sich v. a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.</p>
+        <p>Wir hosten unsere Website bei externen Anbietern (z. B. Render).</p>
 
-        <h2>3. Allgemeine Hinweise und Pflichtinformationen</h2>
-        <h3>Datenschutz</h3>
-        <p>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</p>
+        <h2>3. Allgemeine Hinweise</h2>
+        <p>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst.</p>
 
-        <h3>Hinweis zur verantwortlichen Stelle</h3>
-        <p>
-            Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:<br>
-            Tanja Mielke<br>
-            Laakmannsbusch 27<br>
-            42555 Velbert<br>
-            Telefon: +49 (0) 2051 92847-0<br>
-            E-Mail: mielke.tim2308@gmail.com
-        </p>
-
-        <h2>4. Datenerfassung auf dieser Website</h2>
-        <h3>Kontaktformular</h3>
-        <p>Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
-        <p>Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).</p>
+        <h2>4. Kontaktformular</h2>
+        <p>Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben zwecks Bearbeitung bei uns gespeichert.</p>
 
         <a href="index.html" class="back-btn">&larr; Zurück zur Startseite</a>
     </div>
 
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+    </script>
 </body>
 </html>
