@@ -913,23 +913,29 @@
                 </div>
 
                 <!-- Kontaktformular mit Weiterleitung an mielke.tim2308@gmail.com (über Formspree) -->
-                <form class="contact-form" action="https://formspree.io/f/mgaveygp" method="POST">
-                    <h3>Nachricht senden</h3>
-                    <div class="form-group">
-                        <label for="name">Ihr Name</label>
-                        <input type="text" id="name" name="name" required placeholder="Vor- und Nachname">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-Mail-Adresse</label>
-                        <input type="email" id="email" name="email" required placeholder="beispiel@domain.de">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Ihre Nachricht / Anliegen</label>
-                        <textarea id="message" name="message" required placeholder="Therapieanfrage oder Interesse an Praxisräumen (Yoga/Therapie)..."></textarea>
-                    </div>
-                    <!-- Optional: Weiterleitung nach erfolgreichem Absenden -->
-                    <button type="submit" class="btn-submit">Nachricht absenden</button>
-                </form>
+               <!-- Kontaktformular mit AJAX-Anbindung (bleibt auf der Seite) -->
+<form class="contact-form" id="contactForm" action="https://formspree.io/f/mielke.tim2308@gmail.com" method="POST">
+    <h3>Nachricht senden</h3>
+    <div class="form-group">
+        <label for="name">Ihr Name</label>
+        <input type="text" id="name" name="name" required placeholder="Vor- und Nachname">
+    </div>
+    <div class="form-group">
+        <label for="email">E-Mail-Adresse</label>
+        <input type="email" id="email" name="email" required placeholder="beispiel@domain.de">
+    </div>
+    <div class="form-group">
+        <label for="message">Ihre Nachricht / Anliegen</label>
+        <textarea id="message" name="message" required placeholder="Therapieanfrage oder Interesse an Praxisräumen (Yoga/Therapie)..."></textarea>
+    </div>
+    
+    <button type="submit" id="submitBtn" class="btn-submit">Nachricht absenden</button>
+    
+    <!-- Die Notification / Erfolgsmeldung (wird nach Absenden eingeblendet) -->
+    <div id="formSuccessMessage" style="display: none; margin-top: 1rem; padding: 1rem; background-color: rgba(46, 204, 113, 0.2); border: 1px solid #2ecc71; border-radius: 8px; color: #2ecc71; text-align: center; font-weight: 500;">
+        Vielen Dank! Ihre Nachricht wurde erfolgreich versendet. Wir melden uns zeitnah bei Ihnen.
+    </div>
+</form>
             </div>
         </div>
     </section>
@@ -970,5 +976,53 @@
             navLinks.classList.remove('active');
         }
     </script>
+    <script>
+    function toggleMenu() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('active');
+    }
+
+    function closeMenu() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.remove('active');
+    }
+
+    // NEU: Verhindert die Weiterleitung zu Formspree und zeigt stattdessen die Meldung an
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault(); // Stoppt den normalen Seitenwechsel
+        
+        const form = e.target;
+        const data = new FormData(form);
+        const submitBtn = document.getElementById('submitBtn');
+        const successMsg = document.getElementById('formSuccessMessage');
+        
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Wird gesendet...';
+
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'json'
+                }
+            });
+
+            if (response.ok) {
+                form.reset(); // Leert die Eingabefelder
+                submitBtn.style.display = 'none'; // Versteckt den Button
+                successMsg.style.display = 'block'; // Zeigt die Erfolgsmeldung
+            } else {
+                alert('Es gab ein Problem beim Senden. Bitte versuchen Sie es später noch einmal.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Nachricht absenden';
+            }
+        } catch (error) {
+            alert('Netzwerkfehler. Bitte überprüfen Sie Ihre Internetverbindung.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Nachricht absenden';
+        }
+    });
+</script>
 </body>
 </html>
